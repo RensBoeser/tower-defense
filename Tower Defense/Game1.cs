@@ -11,6 +11,7 @@ namespace Tower_Defense
   {
     GraphicsDeviceManager graphics;
     SpriteBatch spriteBatch;
+    Main main;
 
     public Game1()
     {
@@ -29,6 +30,7 @@ namespace Tower_Defense
       // TODO: Add your initialization logic here
 
       base.Initialize();
+      
     }
 
     /// <summary>
@@ -39,6 +41,8 @@ namespace Tower_Defense
     {
       // Create a new SpriteBatch, which can be used to draw textures.
       spriteBatch = new SpriteBatch(GraphicsDevice);
+      Texture2D dot = Content.Load<Texture2D>("dot");
+      main = new Main(dot);
 
       // TODO: use this.Content to load your game content here
     }
@@ -73,9 +77,13 @@ namespace Tower_Defense
     /// <param name="gameTime">Provides a snapshot of timing values.</param>
     protected override void Draw(GameTime gameTime)
     {
-      GraphicsDevice.Clear(Color.CornflowerBlue);
+      GraphicsDevice.Clear(Color.Black);
+
 
       // TODO: Add your drawing code here
+      spriteBatch.Begin();
+      main.draw(spriteBatch);
+      spriteBatch.End();
 
       base.Draw(gameTime);
     }
